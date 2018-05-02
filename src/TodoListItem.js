@@ -26,6 +26,7 @@ export default class TodoListItem extends React.Component {
           <span
             data-cy="markAsDeleted"
             className="glyphicon glyphicon-remove-sign close"
+            aria-hidden="true"
             onClick={this.onClickClose}
           />
         </td>
