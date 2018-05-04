@@ -14,7 +14,7 @@ export default class TodoListItem extends React.Component {
     const { item } = this.props;
     const todoClass = item.done ? "done" : "undone";
     return (
-      <tr>
+      <tr data-cy='todoItem'>
         <td className={todoClass}>
           <span
             data-cy="markAsCompleted"
