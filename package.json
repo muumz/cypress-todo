@@ -13,12 +13,15 @@
     "react-dom": "16.3.2",
     "react-scripts": "1.1.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "start-server-and-test": "^2.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "cy:report": "cypress run"
+    "ci:unit": "npm run test -- --watchAll=false",
+    "ci:cypress": "start-server-and-test start http://localhost:3000 cypress:run"
   }
 }
