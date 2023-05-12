@@ -19,6 +19,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "cy:report": "npm run cleanup && npm run cy_dashboard && npm run merge_reports && npm run mochaswesome_report"
+    "cy:report": "cypress run"
   }
 }
