@@ -1,5 +1,5 @@
 describe("Checking if localhost is running", () => {
-    beforeEach(() => {
+  beforeEach(() => {
     cy.visit("http://localhost:3000/");
   });
 
