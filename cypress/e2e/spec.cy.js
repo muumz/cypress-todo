@@ -1,7 +1,7 @@
 describe("Checking if localhost is running", () => {
-  /*  beforeEach(() => {
+    beforeEach(() => {
     cy.visit("http://localhost:3000/");
-  });*/
+  });
 
   it("finds the right header", () => {
     cy.get("h1").contains("My Todo list");
