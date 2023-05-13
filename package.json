@@ -20,10 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test2": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "cy:report": "cypress run",
-    "start-server": "npm start",
     "test": "cypress run",
-    "ci": "start-server-and-test start-server http://localhost:3000 test"
+    "ci:unit": "npm run test - - watchAll=false",
+    "ci:cypress": "start-server-and-test start http://localhost:3000 cypress:run"
   }
 }
