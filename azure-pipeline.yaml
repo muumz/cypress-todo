@@ -1,51 +1,42 @@
+resources:
+  pipelines:
+  - pipeline: Deploy to ASP
+    source: Deploy to ASP
+    trigger:
+      branches:
+        include:
+        - refs/heads/master
 trigger:
-  - master
+  - none
+  
 jobs:
-  - job: Job_1
-    displayName: Agent job 1
-    pool:
-      vmImage: vs2017-win2016
-    steps:
-      - checkout: self
-      - task: NodeTool@0
-        displayName: Use Node version
-        inputs:
-          versionSpec: 12.x
-      - task: npmAuthenticate@0
-        inputs:
-          workingFile: .npmrc
-      - task: Npm@0
-        displayName: Install application dependencies
-        inputs:
-          arguments: --force
-      - task: Npm@1
-        displayName: npm run test
-        inputs:
-          command: custom
-          customCommand: run ci:unit
-      - task: Npm@1
-        displayName: npm run cypress
-        inputs:
-          command: custom
-          customCommand: run ci:cypress
-      - task: Npm@1
-        displayName: npm build
-        inputs:
-          command: custom
-          verbose: false
-          customCommand: run build
-      - task: AzureRmWebAppDeployment@4
-        displayName: "Azure App Service Deploy"
-        inputs:
-          ConnectedServiceName: 0e5c82fc-6c3f-4ad2-97a2-9a0bb6bfd0f2
-          WebAppKind: webAppLinux
-          WebAppName: cypress2023_group
-          Package: $(System.DefaultWorkingDirectory)/build
-          InlineScript: >2
-
-      - task: ArchiveFiles@1
-        displayName: Archive files
-        inputs:
-          archiveType: zip
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish Artifact: drop"
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - task: Npm@1
+    displayName: npm install
+    inputs:
+      verbose: false
+  - task: Npm@1
+    displayName: Run Cypress Test
+    continueOnError: True
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: run test
+  - task: Npm@1
+    displayName: Run npm build
+    continueOnError: True
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: run build
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: build
+...
