@@ -37,9 +37,9 @@ jobs:
       - task: AzureRmWebAppDeployment@4
         displayName: "Azure App Service Deploy"
         inputs:
-          ConnectedServiceName: Azure for Students
+          ConnectedServiceName: 0e5c82fc-6c3f-4ad2-97a2-9a0bb6bfd0f2
           WebAppKind: webAppLinux
-          WebAppName: <YOUR_APP_ID>
+          WebAppName: cypress2023_group
           Package: $(System.DefaultWorkingDirectory)/build
           InlineScript: >2
 
